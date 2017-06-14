@@ -8,9 +8,11 @@ contract MiningDAO {
         address contract_ = this;
         uint256 balance = contract_.balance;
         uint256 amount = (balance / investors.length) - 0.01 ether;
-        for(uint x = 0; x < investors.length; x++) {
-            if (!investors[x].send(amount)) {
-               throw;
+        if(amount >= 0.2 ether) {
+            for(uint x = 0; x < investors.length; x++) {
+                if (!investors[x].send(amount)) {
+                   throw;
+                }
             }
         }
     }
